@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="it" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manuale di Grammatica</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,400&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style id="grammar-core-styles">
+        :root {
+            --paper-bg: #fdfaf6;
+            --text-dark: #1a1a1a;
+            --accent-gold: #c0a080;
+            --sidebar-dark: #121212;
+        }
+
+        body { 
+            background-color: var(--paper-bg); 
+            color: var(--text-dark); 
+            font-family: 'Crimson Pro', serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .title-font { font-family: 'Cormorant Garamond', serif; }
+
+        /* Struttura Capitolo Professionale */
+        .ch-header { text-align: center; margin-bottom: 4rem; }
+        .ch-label { 
+            font-family: 'Inter', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--accent-gold);
+            margin-bottom: 1rem;
+            display: block;
+        }
+        .ch-title { 
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.5rem, 6vw, 3.5rem);
+            font-weight: 300;
+            line-height: 1.1;
+            color: #000;
+        }
+        .ch-separator {
+            width: 80px;
+            height: 2px;
+            background: var(--accent-gold);
+            margin: 2rem auto;
+            opacity: 0.6;
+        }
+
+        /* Elementi del Libro di Grammatica */
+        .grammar-content { font-size: 1.2rem; line-height: 1.8; text-align: justify; }
+        
+        /* Tabelle Grammaticali */
+        .grammar-table-wrapper { margin: 2rem 0; overflow-x: auto; }
+        .grammar-table {
+            width: 100%;
+            border-top: 2px solid var(--text-dark);
+            border-bottom: 2px solid var(--text-dark);
+            font-family: 'Crimson Pro', serif;
+        }
+        .grammar-table th {
+            padding: 1rem;
+            text-align: left;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            background: rgba(0,0,0,0.02);
+            border-bottom: 1px solid #ddd;
+        }
+        .grammar-table td { padding: 1rem; border-bottom: 1px solid #eee; }
+        .grammar-table tr:last-child td { border-bottom: none; }
+
+        /* Box Nota/Eccezione */
+        .note-box {
+            margin: 2.5rem 0;
+            padding: 2rem;
+            background-color: #fff;
+            border: 1px solid #e5e1da;
+            border-left: 4px solid var(--accent-gold);
+            box-shadow: 0 10px 30px -15px rgba(0,0,0,0.05);
+            border-radius: 0 8px 8px 0;
+        }
+        .note-box-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.65rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--accent-gold);
+            margin-bottom: 0.75rem;
+            display: block;
+        }
+
+        /* Esempi */
+        .example-block {
+            margin: 1.5rem 0;
+            padding-left: 1.5rem;
+            border-left: 1px solid #ddd;
+            font-style: italic;
+            color: #444;
+        }
+        .example-item { margin-bottom: 0.5rem; position: relative; }
+        .example-item::before { content: "•"; color: var(--accent-gold); position: absolute; left: -1rem; }
+
+        /* 4. EVIDENZIATORI E MARCATORE TESTO */
+        .m-oro { background-color: rgba(251, 191, 36, 0.3); padding: 0 4px; border-radius: 4px; font-weight: 600; }
+        .m-rosso { background-color: rgba(239, 68, 68, 0.2); padding: 0 4px; border-radius: 4px; color: #b91c1c; font-weight: 600; }
+        .m-verde { background-color: rgba(34, 197, 94, 0.2); padding: 0 4px; border-radius: 4px; color: #15803d; }
+        .m-blu { background-color: rgba(59, 130, 246, 0.15); padding: 0 4px; border-radius: 4px; color: #1d4ed8; }
+        .m-focus {
+            background: linear-gradient(120deg, rgba(254, 240, 138, 0.4) 0%, rgba(254, 240, 138, 0.4) 100%);
+            background-repeat: no-repeat; background-size: 100% 0.4em; background-position: 0 88%; font-weight: bold;
+        }
+        .errore-grammaticale { text-decoration: underline wavy #ef4444 2px; text-underline-offset: 5px; }
+        .testo-blu { color: #1e40af;}
+        .testo-rosso {color: #b91c1c;  }
+        /* Classe per sottolineatura importante Rossa */
+        .testo-importante-red {
+            text-decoration: underline;
+            text-decoration-color: #ff0000;
+            text-decoration-thickness: 2px;
+            text-underline-offset: 4px;
+        }
+
+        /* Classe per sottolineatura importante Blu */
+        .testo-importante-blue {
+            text-decoration: underline;
+            text-decoration-color: #0000ff;
+            text-decoration-thickness: 2px;
+            text-underline-offset: 4px;
+        }
+
+        /* Navigazione */
+        .sidebar-item {
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            border-bottom: 1px solid rgba(255,255,255,0.03);
+            transition: all 0.3s;
+        }
+        .sidebar-item.active { background: rgba(255,255,255,0.05); border-left: 3px solid var(--accent-gold); }
+        .sidebar-item:hover:not(.active) { background: rgba(255,255,255,0.02); }
+
+        .nav-btn {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            padding: 0.8rem 1.5rem;
+            border: 1px solid rgba(0,0,0,0.1);
+            transition: all 0.2s;
+        }
+        .nav-btn:hover:not(:disabled) { background: #000; color: #fff; }
+        .nav-btn:disabled { opacity: 0.2; cursor: not-allowed; }
+
+        /* Animazioni */
+        @keyframes pageFade { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-page { animation: pageFade 0.6s ease-out forwards; }
+    </style>
+</head>
+<body class="h-full flex overflow-hidden">
+
+<div id="app" class="flex h-full w-full">
+    
+    <!-- Sidebar Indice -->
+    <aside id="sidebar" class="w-80 h-full bg-[#121212] text-[#d1d1d1] flex-shrink-0 z-30 flex flex-col transition-transform duration-300 lg:translate-x-0 -translate-x-full fixed lg:relative shadow-2xl">
+        <div class="p-10 border-b border-white/5">
+            <h1 id="side-book-title" class="title-font text-2xl font-bold text-white tracking-tight">Manuale</h1>
+            <div id="side-book-author" class="text-[10px] uppercase tracking-[0.3em] mt-3 text-[#c0a080] font-bold">Grammatica Digitale</div>
+        </div>
+        <nav class="flex-1 overflow-y-auto py-6" id="toc-container"></nav>
+        <div class="p-6 border-t border-white/5">
+            <button onclick="toggleEditor()" class="w-full py-3 bg-white/5 hover:bg-white/10 rounded text-[10px] font-bold uppercase tracking-widest transition-all">⚙ Modalità Editor</button>
+        </div>
+    </aside>
+
+    <!-- Overlay Mobile -->
+    <div id="sidebar-overlay" onclick="toggleSidebar()" class="fixed inset-0 bg-black/60 z-20 lg:hidden hidden"></div>
+
+    <!-- Area di Lettura -->
+    <main class="flex-1 h-full overflow-y-auto flex flex-col items-center">
+        <div class="max-w-3xl w-full px-8 sm:px-16 py-20 lg:py-32 flex-1">
+            <article id="book-content" class="animate-page">
+                <header class="ch-header">
+                    <span id="display-ch-label" class="ch-label">Sezione 1</span>
+                    <h2 id="display-ch-title" class="ch-title">Titolo</h2>
+                    <div class="ch-separator"></div>
+                </header>
+
+                <div id="display-ch-body" class="grammar-content">
+                    <!-- Contenuto dinamico -->
+                </div>
+            </article>
+
+            <footer class="mt-32 pt-10 border-t border-black/5 flex justify-between items-center">
+                <button onclick="changeChapter(-1)" id="btn-prev" class="nav-btn">Precedente</button>
+                <span id="nav-counter" class="text-[10px] font-bold uppercase tracking-widest opacity-30">1 / 1</span>
+                <button onclick="changeChapter(1)" id="btn-next" class="nav-btn">Successivo</button>
+            </footer>
+        </div>
+    </main>
+
+    <!-- Editor UI Panel -->
+    <div id="editor-panel" class="fixed inset-y-0 right-0 w-[500px] bg-white shadow-2xl z-50 transform translate-x-full transition-transform duration-500 flex flex-col text-slate-800">
+        <div class="p-6 border-b flex justify-between items-center bg-slate-50">
+            <h2 class="font-black text-xs uppercase tracking-widest">Pannello di Scrittura</h2>
+            <button onclick="toggleEditor()" class="text-slate-400 hover:text-black">✕</button>
+        </div>
+
+        <div class="flex-1 overflow-y-auto p-8 space-y-8">
+            <!-- Info Globali -->
+            <section class="space-y-4">
+                <label class="block text-[10px] font-bold uppercase tracking-widest text-slate-400">Titolo del Libro</label>
+                <input type="text" id="edit-book-title" oninput="syncGlobal()" class="w-full p-3 border rounded-lg text-sm focus:ring-2 focus:ring-slate-200 outline-none">
+            </section>
+
+            <!-- Capitolo Corrente -->
+            <section class="p-6 bg-slate-50 rounded-xl space-y-4 border border-slate-100">
+                <h3 class="text-[10px] font-black uppercase text-blue-500 tracking-widest mb-4">Editing Capitolo</h3>
+                
+                <input type="text" id="edit-ch-label" oninput="syncChapter()" class="w-full p-3 border rounded text-sm mb-2" placeholder="Etichetta (es: Capitolo I)">
+                <input type="text" id="edit-ch-title" oninput="syncChapter()" class="w-full p-3 border rounded text-sm" placeholder="Titolo della Lezione">
+                
+                <div class="pt-4">
+                    <label class="block text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-2">Corpo Lezione (HTML supportato)</label>
+                    <textarea id="edit-ch-body" oninput="syncChapter()" class="w-full h-96 p-4 border rounded font-mono text-xs leading-relaxed" placeholder="Scrivi qui..."></textarea>
+                </div>
+            </section>
+
+            <section class="bg-amber-50 p-4 rounded-lg border border-amber-100">
+                <h4 class="text-[9px] font-black uppercase text-amber-600 mb-2 tracking-widest">Snippet Rapidi</h4>
+                <div class="grid grid-cols-1 gap-2 text-[10px] font-mono text-amber-800">
+                    <div class="bg-white p-2 rounded cursor-pointer" onclick="insertSnippet('table')">Tabella Grammaticale</div>
+                    <div class="bg-white p-2 rounded cursor-pointer" onclick="insertSnippet('note')">Box Nota Bene</div>
+                    <div class="bg-white p-2 rounded cursor-pointer" onclick="insertSnippet('example')">Lista Esempi</div>
+<div class="bg-white p-2 rounded cursor-pointer" onclick="insertSnippet('structure')">Struttura</div>
+<div class="bg-white p-2 rounded cursor-pointer" onclick="insertSnippet('note2')">Box giallo</div>
+<div class="bg-white p-2 rounded cursor-pointer" onclick="insertSnippet('flashcard')">Flashcard</div>
+<div class="bg-white p-2 rounded cursor-pointer" onclick="insertSnippet('box')">Box Multiiplo</div>
+<div class="bg-white p-2 rounded cursor-pointer" onclick="insertSnippet('box2')">box singolo</div>
+<div class="bg-white p-2 rounded cursor-pointer" onclick="insertSnippet('focus')">errori e focus</div>
+<div class="bg-white p-2 rounded cursor-pointer" onclick="insertSnippet('main')">main</div>
+                </div>
+            </section>
+        </div>
+
+        <div class="p-8 bg-slate-50 border-t space-y-3">
+            <button onclick="addChapter()" class="w-full py-3 bg-slate-900 text-white rounded-lg text-xs font-bold tracking-widest hover:bg-slate-800">NUOVO CAPITOLO</button>
+            <button onclick="exportGrammar()" class="w-full py-4 bg-[#c0a080] text-white rounded-lg text-xs font-bold tracking-widest shadow-xl hover:opacity-90">ESPORTA MANUALE FINALE (.HTML)</button>
+            <button onclick="resetAll()" class="w-full py-2 text-red-400 text-[10px] font-bold uppercase tracking-widest mt-4">Resetta Progetto</button>
+        </div>
+    </div>
+
+    <!-- Mobile Button -->
+    <button onclick="toggleSidebar()" class="lg:hidden fixed top-6 left-6 bg-white/80 p-3 rounded-full shadow-lg z-40">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+</div>
+
+<script>
+    const snippets = {
+        table: `
+<div class="grammar-table-wrapper">
+    <table class="grammar-table">
+        <thead>
+            <tr><th>Caso/Genere</th><th>Singolare</th><th>Plurale</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>Maschile</td><td>Dato 1</td><td>Dato 2</td></tr>
+            <tr><td>Femminile</td><td>Dato 3</td><td>Dato 4</td></tr>
+        </tbody>
+    </table>
+</div>`,
+        note: `
+<div class="note-box">
+    <span class="note-box-title">💡 Attenzione</span>
+    <p class="text-sm">Qui va inserita un'eccezione importante o un consiglio pratico per lo studente.</p>
+</div>`,
+        example: `
+<div class="example-block">
+    <div class="example-item">Esempio uno di frase corretta.</div>
+    <div class="example-item">Esempio due di frase con errore evidenziato.</div>
+</div>`,
+   structure: `
+<div class="flex flex-wrap gap-2 items-center justify-center p-6 bg-blue-50 rounded-2xl border-2 border-blue-100 my-8">
+    <div class="bg-white px-4 py-2 rounded-lg shadow-sm border border-blue-200 text-center">
+        <span class="block text-xs font-bold text-blue-400 uppercase">Soggetto</span>
+        <span class="text-xl font-chinese">我</span>
+    </div>
+    <div class="text-blue-300 text-2xl">+</div>
+    <div class="bg-white px-4 py-2 rounded-lg shadow-sm border border-blue-200 text-center">
+        <span class="block text-xs font-bold text-blue-400 uppercase">Verbo</span>
+        <span class="text-xl font-chinese">吃</span>
+    </div>
+    <div class="text-blue-300 text-2xl">+</div>
+    <div class="bg-white px-4 py-2 rounded-lg shadow-sm border border-blue-200 text-center">
+        <span class="block text-xs font-bold text-blue-400 uppercase">Oggetto</span>
+        <span class="text-xl font-chinese">shi</span>
+    </div>
+</div>`,
+     note2: `
+<div class="bg-red-50 border-2 border-red-100 p-6 rounded-2xl relative mt-10">
+    <div class="absolute -top-3 left-6 bg-red-600 text-white px-4 py-1 rounded-full text-xs font-bold uppercase shadow-md">Nota</div>
+    <p class="text-slate-700 font-medium leading-relaxed">
+        Il verbo non cambia mai forma. Non esiste la coniugazione come in italiano: "io sono", "tu sei", "egli è" resta sempre <strong>是 (shì)</strong>.
+    </p>
+</div>`,
+flashcard: ` <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
+<div class="flex items-center p-4 bg-slate-50 rounded-lg border border-slate-100">
+<div class="text-3xl font-chinese text-indigo-600 mr-4">学生</div>
+<div>
+<div class="text-sm font-bold text-slate-800">Xuéshēng</div>
+<div class="text-sm italic text-slate-500">Studente</div>
+</div>
+</div>
+ <div class="flex items-center p-4 bg-slate-50 rounded-lg border border-slate-100">
+<div class="text-3xl font-chinese text-indigo-600 mr-4">工人</div>
+<div class="text-sm font-bold text-slate-800">Gōngrén</div>
+<div class="text-sm italic text-slate-500">Operaio</div>
+</div>
+</div>
+</div> `,
+ box: ` <div class="bg-white border-l-4 border-yellow-500 p-6 rounded-r-2xl shadow-md">
+    <div class="text-xs font-bold text-amber-700 uppercase mb-2 tracking-widest">Esempi</div>
+    <div class="mb-6">
+        <p class="text-4xl font-chinese mb-1"><span class="testo-blu">我是学生，你是学生，他也是学生。</span></p>
+        <p class="text-slate-500 italic mb-3">Wǒ shì xuéshēng, nǐ shì xuéshēng, tā yěshì xuéshēng.</p>
+        <p class="text-slate-800 border-t border-amber-200 pt-3 text-lg font-semibold">io sono studente, tu sei studente, lui pure è studente</p>
+    </div>
+    <div class="border-t border-amber-200/60 my-6"></div>
+    <div>
+        <p class="text-4xl font-chinese mb-1"><span class="testo-blu">今天我没出门，明天我会出门。</span></p>
+        <p class="text-slate-500 italic mb-3">Jīntiān wǒ méi chūmén, míngtiān wǒ huì chūmén.</p>
+        <p class="text-slate-800 border-t border-amber-200 pt-3 text-lg font-semibold">Oggi io non sono uscito, domani uscirò</p>
+    </div>
+</div> `,
+ box2: ` <div class="bg-amber-50 border-l-4 border-amber-400 p-6 rounded-r-2xl shadow-sm">
+    <div class="text-xs font-bold text-amber-700 uppercase mb-2 tracking-widest">Esempio</div>
+    <p class="text-4xl font-chinese mb-1">我吃米饭</p>
+    <p class="text-slate-500 italic mb-3">Wǒ chī mǐfàn</p>
+    <p class="text-slate-800 border-t border-amber-200 pt-3 text-lg font-semibold">Io mangio il riso</p>
+</div> `,
+    focus: ` <div class="my-6 p-4 bg-white border border-slate-200 rounded-xl shadow-sm">
+  <p class="mb-2">
+    <span class="text-red-600 font-bold mr-2">✕ Errato:</span>
+    <span class="errore-grammaticale text-xl font-chinese italic text-slate-400">我<span class="m-rosso">是</span>很高兴</span>
+  </p>
+  <p>
+    <span class="text-green-600 font-bold mr-2">✓ Corretto:</span>
+    <span class="text-xl font-chinese text-slate-800">我<span class="m-oro">很</span>高兴</span>
+  </p>
+  <p class="mt-4 text-sm text-slate-500 border-t pt-2">
+    In cinese, il verbo essere <span class="m-oro">是 (shì)</span> non si usa mai davanti a un aggettivo qualificativo. Si usa invece l'avverbio <span class="m-focus">很 (hěn)</span>.
+  </p>
+</div> `,
+main: `<div class="w-full max-w-7xl mx-auto p-4 md:p-6 bg-white border border-slate-300 rounded-xl shadow-lg text-slate-900 font-sans">
+   Inserisci qui le tue tabelle, i box e altri contenuti 
+    </div> `
+
+    };
+
+    const initialData = {
+        title: "Fondamenti di Grammatica",
+        author: "Manuale d'Autore",
+        chapters: [
+            {
+                label: "Capitolo I",
+                title: "L'Arte della Punteggiatura",
+                body: `
+                <p>La punteggiatura non è solo un insieme di segni grafici, ma il respiro stesso della frase. Senza di essa, il pensiero diventerebbe un flusso indistinto e faticoso.</p>
+                
+                <div class="note-box">
+                    <span class="note-box-title">💡 La Virgola</span>
+                    <p>La virgola non va mai usata tra soggetto e verbo, a meno che non si tratti di un inciso ben delimitato.</p>
+                </div>
+
+                <div class="grammar-table-wrapper">
+                    <table class="grammar-table">
+                        <thead>
+                            <tr><th>Segno</th><th>Nome</th><th>Funzione Principale</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>,</td><td>Virgola</td><td>Breve pausa sintattica</td></tr>
+                            <tr><td>;</td><td>Punto e virgola</td><td>Pausa intermedia tra due concetti</td></tr>
+                            <tr><td>:</td><td>Due punti</td><td>Introduzione di spiegazione o elenco</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="example-block">
+                    <div class="example-item">"Vado a mangiare, nonna!" (Corretto)</div>
+                    <div class="example-item">"Vado a mangiare nonna!" (Sbagliato, povera nonna)</div>
+                </div>
+                `
+            }
+        ]
+    };
+
+    let state = JSON.parse(localStorage.getItem('_grammar_v2_data')) || initialData;
+    let currentIdx = 0;
+
+    function init() {
+        render();
+        fillEditor();
+    }
+
+    function render() {
+        document.getElementById('side-book-title').innerText = state.title;
+        document.getElementById('side-book-author').innerText = state.author;
+
+        const toc = document.getElementById('toc-container');
+        toc.innerHTML = '';
+        state.chapters.forEach((ch, i) => {
+            const div = document.createElement('div');
+            div.className = `sidebar-item ${i === currentIdx ? 'active' : ''}`;
+            div.innerHTML = `
+                <div class="text-[9px] uppercase tracking-widest opacity-40 font-bold mb-1">${ch.label}</div>
+                <div class="text-xs font-semibold tracking-tight">${ch.title}</div>
+            `;
+            div.onclick = () => { currentIdx = i; render(); fillEditor(); if(window.innerWidth < 1024) toggleSidebar(); };
+            toc.appendChild(div);
+        });
+
+        const cur = state.chapters[currentIdx];
+        document.getElementById('display-ch-label').innerText = cur.label;
+        document.getElementById('display-ch-title').innerText = cur.title;
+        document.getElementById('display-ch-body').innerHTML = cur.body;
+
+        document.getElementById('nav-counter').innerText = `${currentIdx + 1} / ${state.chapters.length}`;
+        document.getElementById('btn-prev').disabled = currentIdx === 0;
+        document.getElementById('btn-next').disabled = currentIdx === state.chapters.length - 1;
+
+        localStorage.setItem('_grammar_v2_data', JSON.stringify(state));
+    }
+
+    function fillEditor() {
+        document.getElementById('edit-book-title').value = state.title;
+        const cur = state.chapters[currentIdx];
+        document.getElementById('edit-ch-label').value = cur.label;
+        document.getElementById('edit-ch-title').value = cur.title;
+        document.getElementById('edit-ch-body').value = cur.body;
+    }
+
+    function syncGlobal() {
+        state.title = document.getElementById('edit-book-title').value;
+        render();
+    }
+
+    function syncChapter() {
+        const cur = state.chapters[currentIdx];
+        cur.label = document.getElementById('edit-ch-label').value;
+        cur.title = document.getElementById('edit-ch-title').value;
+        cur.body = document.getElementById('edit-ch-body').value;
+        render();
+    }
+
+    function changeChapter(dir) {
+        currentIdx += dir;
+        render();
+        fillEditor();
+        document.querySelector('main').scrollTo(0,0);
+    }
+
+    function addChapter() {
+        state.chapters.push({ label: "Nuova Sezione", title: "Titolo Lezione", body: "<p>Inizia a scrivere...</p>" });
+        currentIdx = state.chapters.length - 1;
+        render();
+        fillEditor();
+    }
+
+    function insertSnippet(type) {
+        const textarea = document.getElementById('edit-ch-body');
+        const start = textarea.selectionStart;
+        const text = textarea.value;
+        const inserted = snippets[type];
+        textarea.value = text.substring(0, start) + inserted + text.substring(textarea.selectionEnd);
+        syncChapter();
+    }
+
+    function toggleEditor() { document.getElementById('editor-panel').classList.toggle('translate-x-full'); }
+    function toggleSidebar() { 
+        document.getElementById('sidebar').classList.toggle('-translate-x-full'); 
+        document.getElementById('sidebar-overlay').classList.toggle('hidden');
+    }
+
+    function resetAll() { if(confirm("Sei sicuro? Perderai tutto il lavoro.")) { localStorage.removeItem('_grammar_v2_data'); location.reload(); } }
+
+    function exportGrammar() {
+        const styles = document.getElementById('grammar-core-styles').innerHTML;
+        const stateStr = JSON.stringify(state);
+        const finalHtml = `<!DOCTYPE html>
+<html lang="it" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${state.title}</title>
+    <script src="https://cdn.tailwindcss.com"><\/script>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;600&family=Crimson+Pro:wght@400;600&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style>${styles}</style>
+</head>
+<body class="h-full flex overflow-hidden">
+    <div class="flex h-full w-full">
+        <aside id="sidebar" class="w-80 h-full bg-[#121212] text-[#d1d1d1] flex-shrink-0 z-30 flex flex-col transition-transform duration-300 lg:translate-x-0 -translate-x-full fixed lg:relative shadow-2xl">
+            <div class="p-10 border-b border-white/5"><h1 class="title-font text-2xl font-bold text-white">${state.title}</h1><div class="text-[10px] uppercase tracking-[0.3em] mt-3 text-[#c0a080] font-bold">${state.author}</div></div>
+            <nav class="flex-1 overflow-y-auto py-6" id="toc-container"></nav>
+        </aside>
+        <div id="sidebar-overlay" onclick="toggleSidebar()" class="fixed inset-0 bg-black/60 z-20 lg:hidden hidden"></div>
+        <main class="flex-1 h-full overflow-y-auto flex flex-col items-center">
+            <div class="max-w-3xl w-full px-8 sm:px-16 py-20 lg:py-32 flex-1">
+                <article id="book-content">
+                    <header class="ch-header"><span id="display-ch-label" class="ch-label"></span><h2 id="display-ch-title" class="ch-title"></h2><div class="ch-separator"></div></header>
+                    <div id="display-ch-body" class="grammar-content"></div>
+                </article>
+                <footer class="mt-32 pt-10 border-t border-black/5 flex justify-between items-center">
+                    <button onclick="changeChapter(-1)" id="btn-prev" class="nav-btn">Precedente</button>
+                    <span id="nav-counter" class="text-[10px] font-bold uppercase tracking-widest opacity-30"></span>
+                    <button onclick="changeChapter(1)" id="btn-next" class="nav-btn">Successivo</button>
+                </footer>
+            </div>
+        </main>
+    </div>
+    <button onclick="toggleSidebar()" class="lg:hidden fixed top-6 left-6 bg-white/80 p-3 rounded-full shadow-lg z-40"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16" stroke-width="2" stroke-linecap="round"/></svg></button>
+    <script>
+        let state = ${stateStr};
+        let currentIdx = 0;
+        function render() {
+            const toc = document.getElementById('toc-container');
+            toc.innerHTML = '';
+            state.chapters.forEach((ch, i) => {
+                const div = document.createElement('div');
+                div.className = 'sidebar-item ' + (i === currentIdx ? 'active' : '');
+                div.innerHTML = '<div class="text-[9px] uppercase tracking-widest opacity-40 font-bold mb-1">'+ch.label+'</div><div class="text-xs font-semibold tracking-tight">'+ch.title+'</div>';
+                div.onclick = () => { currentIdx = i; render(); if(window.innerWidth < 1024) toggleSidebar(); };
+                toc.appendChild(div);
+            });
+            const cur = state.chapters[currentIdx];
+            document.getElementById('display-ch-label').innerText = cur.label;
+            document.getElementById('display-ch-title').innerText = cur.title;
+            document.getElementById('display-ch-body').innerHTML = cur.body;
+            document.getElementById('nav-counter').innerText = (currentIdx + 1) + ' / ' + state.chapters.length;
+            document.getElementById('btn-prev').disabled = currentIdx === 0;
+            document.getElementById('btn-next').disabled = currentIdx === state.chapters.length - 1;
+        }
+        function changeChapter(dir) { currentIdx += dir; render(); document.querySelector('main').scrollTo(0,0); }
+        function toggleSidebar() { document.getElementById('sidebar').classList.toggle('-translate-x-full'); document.getElementById('sidebar-overlay').classList.toggle('hidden'); }
+        window.onload = render;
+    <\/script>
+</body>
+</html>`;
+
+        const blob = new Blob([finalHtml], { type: 'text/html' });
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = `MANUALE_${state.title.replace(/\s+/g, '_')}.html`;
+        a.click();
+    }
+
+    window.onload = init;
+</script>
+
+</body>
+</html>
+
