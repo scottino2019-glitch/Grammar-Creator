@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manuale di Grammatica</title>
     <script src="https://cdn.tailwindcss.com"></script>
-   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&=display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&=display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&=display=swap" rel="stylesheet">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
@@ -26,7 +25,7 @@
     body { 
         background-color: var(--paper-bg); 
         color: var(--text-dark); 
-        font-family: 'Dancing Script', cursive; /* Font cambiato come richiesto */
+        font-family: 'Noto Serif SC', serif; /* Font elegante e leggibile per tutto il sito */
         -webkit-font-smoothing: antialiased;
     }
 
@@ -46,7 +45,7 @@
     }
     .ch-title { 
         font-family: 'Cinzel Decorative', serif;
-        font-size: clamp(4rem, 6vw, 7rem); /* Grandezza del titolo ridotta */
+        font-size: clamp(4rem, 6vw, 7rem);
         font-weight: 300;
         line-height: 1.1;
         color: #000;
@@ -61,7 +60,7 @@
 
     /* Elementi del Libro di Grammatica */
     .grammar-content { 
-        font-size: 2.9rem; /* Grandezza del corpo ridotta */
+        font-size: 1.15rem; /* Grandezza ottimale per la lettura */
         line-height: 1.8; 
         text-align: justify; 
     }
@@ -149,7 +148,7 @@
 
     /* Navigazione */
     .sidebar-item {
-        font-family: 'Dancing Script', cursive; /* Aggiunto esplicitamente per il menu laterale */
+        /* Ora eredita Noto Serif SC in automatico dal body */
         padding: 1rem 1.5rem;
         cursor: pointer;
         border-bottom: 1px solid rgba(255,255,255,0.03);
@@ -160,7 +159,7 @@
 
     .nav-btn {
         font-family: 'Inter', sans-serif;
-        font-size: 2.0rem;
+        font-size: 0.7rem;
         font-weight: 700;
         letter-spacing: 0.2em;
         text-transform: uppercase;
