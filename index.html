@@ -17,6 +17,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Dancing+Script:wght@400..700&family=My+Soul&family=Special+Elite&display=swap" rel="stylesheet">
+     
+        <style>
         :root {
             --paper-bg: #fdfaf6;
             --text-dark: #1a1a1a;
@@ -228,33 +230,50 @@
     filter: blur(2px);
   }
          /* --- STILE POST-IT --- */
-        .post-it {
-            position: absolute;
-            bottom: -25px;
-            left: 50%;
-            transform: translateX(-50%) rotate(2deg);
-            width: 200px;
-            min-height: 160px;
-            background: #fff176;
-            padding: 20px;
-            font-family:  'Dancing Script', cursive;
-            font-size: 30px;
-            color: #333;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
-            z-index: 100;
-            border-bottom-right-radius: 40px 10px;
-        }
+       .post-it {
+  width: 250px;
+  min-height: 250px;
+  background-color: #fdfd96; /* Colore giallo tipico dei post-it */
+  padding: 20px 25px;
+  position: relative;
+  font-family: 'My Soul', cursive;
+  font-size: 1.2rem;
+  color: #111;
+  /* Leggera rotazione statica e ombra di base */
+  transform: rotate(-3deg);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
 
-        .post-it::before {
-            content: "";
-            position: absolute;
-            top: -10px;
-            left: 30%;
-            width: 60px;
-            height: 25px;
-            background: rgba(255, 255, 255, 0.4);
-            transform: rotate(-1deg);
-        }
+/* Effetto tridimensionale dell'angolo in basso a destra */
+.post-it::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  bottom: 15px;
+  right: 10px;
+  width: 50%;
+  height: 20%;
+  /* Ombra più marcata e ruotata per simulare il distacco dalla superficie */
+  box-shadow: 0 15px 12px rgba(0, 0, 0, 0.4);
+  transform: rotate(5deg);
+}
+
+/* Stile per i contenuti interni */
+.post-it h2 {
+  margin-top: 0;
+  font-size: 1.6rem;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+  padding-bottom: 5px;
+}
+
+.post-it ul {
+  padding-left: 20px;
+  margin: 15px 0 0 0;
+}
+
+.post-it li {
+  margin-bottom: 8px;
+}
         /* Navigazione */
         .sidebar-item {
             padding: 1rem 1.5rem;
