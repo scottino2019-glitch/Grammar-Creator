@@ -354,6 +354,60 @@ rt {
      gap: 10px; /* Distanza tra la frase in cinese e la traduzione */
     font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
 }
+/* Box grammatica più esempi */
+    .vintage-container {
+    max-width: 900px;
+    margin: 20px auto;
+    background-color: #f5f1e6; /* Beigiolino vintage */
+    border-left: 10px solid #d44d26; /* Striscia rosso-arancio */
+    box-shadow: 5px 5px 15px rgba(0,0,0,0.1);
+    border-radius: 0 8px 8px 0;
+    overflow: hidden;
+}
+
+.grammar-row {
+    display: flex; /* Forza l'affiancamento */
+    border-bottom: 1px solid rgba(212, 77, 38, 0.2);
+}
+
+.theory-side, .example-side {
+    width: 50%; /* Metà esatta */
+    padding: 25px;
+    box-sizing: border-box;
+}
+
+.theory-side {
+    border-right: 1px solid rgba(212, 77, 38, 0.2);
+}
+
+.example-side {
+    background-color: rgba(253, 250, 243, 0.6);
+}
+
+/* Applichiamo Dancing Script */
+.vintage-title {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.2rem;
+    color: #d44d26;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.vintage-translation {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1rem;
+ 
+   color: #555;
+    display: block;
+    margin-top: 10px;
+}
+
+.theory-text {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #333;
+}
     
 
         /* Navigazione */
@@ -467,7 +521,8 @@ rt {
 <div class="bg-white p-2 rounded cursor-pointer" onclick="insertSnippet('focus')">errori e focus</div>
 <div class="bg-white p-2 rounded cursor-pointer" onclick="insertSnippet('main')">main</div>
 <div class="bg-white p-2 rounded cursor-pointer" onclick="insertSnippet('subtitle')">Subtitle</div>
-<div class="bg-white p-2 rounded cursor-pointer" onclick="insertSnippet('postit')">Postit</div>                    
+<div class="bg-white p-2 rounded cursor-pointer" onclick="insertSnippet('postit')">Postit</div> 
+<div class="bg-white p-2 rounded cursor-pointer" onclick="insertSnippet('grammar')">Grammatica + esempi</div>
                 </div>
             </section>
         </div>
@@ -615,7 +670,75 @@ Il Soggetto 🎎<br><span class="testo-blu">主题</span>
        ⚠️ <br>
        Il soggetto solo in rari casi non va mai omesso!
     </div>
- </div> `
+ </div> `,
+        grammar: ` <div class="vintage-container">
+
+    <div class="grammar-row">
+        <div class="theory-side">
+            <h3 class="vintage-title">La particella 吗 (ma)</h3>
+            <p class="theory-text">
+                Questa particella si posiziona alla fine di una frase dichiarativa per trasformarla in una domanda a cui si può rispondere sì o no.
+            </p>
+        </div>
+
+        <div class="example-side">
+            <div class="chinese-text">
+    <ruby>今<rt>jīn</rt></ruby>
+    <ruby>天<rt>tiān</rt></ruby>
+    <ruby>天<rt>tiān</rt></ruby>
+    <ruby>气<rt>qì</rt></ruby>
+    <ruby>很<rt>hěn</rt></ruby>
+    <ruby>好<rt>hǎo</rt></ruby>
+    <span>。</span>
+  
+  <div class="italian-translation">Oggi il tempo è molto bello.</div>
+<ruby>今<rt>jīn</rt></ruby>
+    <ruby>天<rt>tiān</rt></ruby>
+    <ruby>天<rt>tiān</rt></ruby>
+    <ruby>气<rt>qì</rt></ruby>
+    <ruby>很<rt>hěn</rt></ruby>
+    <ruby>好<rt>hǎo</rt></ruby>
+    <span>。</span>
+  
+  <div class="italian-translation">Oggi il tempo è molto bello.</div>
+
+</div>
+        </div>
+    </div>
+
+    <div class="grammar-row">
+        <div class="theory-side">
+            <h3 class="vintage-title">Il verbo 是 (shì)</h3>
+            <p class="theory-text">
+                Corrisponde al verbo "essere". Ricorda che in cinese il verbo non cambia mai forma per persona o numero!
+            </p>
+        </div>
+        <div class="example-side">
+                   <div class="chinese-text">
+    <ruby>今<rt>jīn</rt></ruby>
+    <ruby>天<rt>tiān</rt></ruby>
+    <ruby>天<rt>tiān</rt></ruby>
+    <ruby>气<rt>qì</rt></ruby>
+    <ruby>很<rt>hěn</rt></ruby>
+    <ruby>好<rt>hǎo</rt></ruby>
+    <span>。</span>
+  
+  <div class="italian-translation">Oggi il tempo è molto bello.</div>
+<ruby>今<rt>jīn</rt></ruby>
+    <ruby>天<rt>tiān</rt></ruby>
+    <ruby>天<rt>tiān</rt></ruby>
+    <ruby>气<rt>qì</rt></ruby>
+    <ruby>很<rt>hěn</rt></ruby>
+    <ruby>好<rt>hǎo</rt></ruby>
+    <span>。</span>
+  
+  <div class="italian-translation">Oggi il tempo è molto bello.</div>
+
+</div>
+        </div>
+    </div>
+
+</div> `
 
     };
 
