@@ -267,6 +267,91 @@
 .post-it li {
   margin-bottom: 8px;
 }
+
+        /* Stile del contenitore principale */
+.chinese-examples-box {
+  max-width: 500px; /* Mantiene il box compatto */
+  background-color: #fff;
+  border: 1px solid #e5e1da;
+  border-radius: 8px;
+  padding: 16px 20px;
+  box-shadow: 0 10px 30px -15px rgba(0,0,0,0.05);
+  font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+}
+
+.box-header {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 12px;
+  border-bottom: 2px solid #f3f4f6;
+  padding-bottom: 8px;
+}
+
+/* Lista degli esempi */
+.example-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px; /* Spazio tra i vari esempi */
+}
+
+.example-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* Stile per i caratteri cinesi e il Pinyin */
+.chinese-text {
+  /* Font specifici per una lettura chiara dei caratteri cinesi */
+  font-family: 'PingFang SC', 'Microsoft YaHei', 'Noto Sans SC', sans-serif;
+  font-size: 1.3rem; /* Grandezza leggibile ma non enorme */
+  color: #1f2937;
+  line-height: 2; /* Spazio extra necessario per accogliere il Pinyin */
+}
+
+/* Regole per il tag ruby */
+ruby {
+  ruby-align: center;
+  margin-right: 2px; /* Leggero respiro tra le parole/caratteri */
+}
+
+rt {
+  font-size: 0.55em; /* Dimensione del pinyin rispetto al carattere */
+  color: #6b7280;
+  font-family: 'Segoe UI', Roboto, sans-serif;
+  font-weight: normal;
+  transform: translateY(-2px); /* Alza leggermente il pinyin */
+}
+
+/* Stile della traduzione italiana */
+.italian-translation {
+  font-size: 0.95rem;
+  color: #4b5563;
+  font-style: italic;
+  padding-left: 4px;
+  border-left: 2px solid #3b82f6; /* Una riga azzurra per evidenziare la traduzione */
+}
+/* Contenitore per l'esempio singolo */
+.chinese-example-single {
+  max-width: 500px;
+  background-color: #ffffff;
+  border: 1px solid #e0e4e8;
+  border-radius: 8px;
+  padding: 16px 20px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Distanza tra la frase in cinese e la traduzione */
+  font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+}
+    
+
         /* Navigazione */
         .sidebar-item {
             padding: 1rem 1.5rem;
@@ -459,25 +544,49 @@ flashcard: ` <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
 </div>
 </div>
 </div> `,
- box: ` <div class="bg-white border-l-4 border-yellow-500 p-6 rounded-r-2xl shadow-md">
-    <div class="text-xs font-bold text-amber-700 uppercase mb-2 tracking-widest">Esempi</div>
-    <div class="mb-6">
-        <p class="text-4xl font-chinese mb-1"><span class="testo-blu">我是学生，你是学生，他也是学生。</span></p>
-        <p class="text-slate-500 italic mb-3">Wǒ shì xuéshēng, nǐ shì xuéshēng, tā yěshì xuéshēng.</p>
-        <p class="text-slate-800 border-t border-amber-200 pt-3 text-lg font-semibold">io sono studente, tu sei studente, lui pure è studente</p>
-    </div>
-    <div class="border-t border-amber-200/60 my-6"></div>
-    <div>
-        <p class="text-4xl font-chinese mb-1"><span class="testo-blu">今天我没出门，明天我会出门。</span></p>
-        <p class="text-slate-500 italic mb-3">Jīntiān wǒ méi chūmén, míngtiān wǒ huì chūmén.</p>
-        <p class="text-slate-800 border-t border-amber-200 pt-3 text-lg font-semibold">Oggi io non sono uscito, domani uscirò</p>
-    </div>
+ box: ` <div class="chinese-examples-box">
+  <div class="box-header">Esempi pratici</div>
+ <ul class="example-list">
+    <!-- Esempio 1 -->
+    <li class="example-item">
+      <div class="chinese-text">
+        <ruby>我<rt>wǒ</rt></ruby>
+        <ruby>是<rt>shì</rt></ruby>
+        <ruby>意<rt>yì</rt></ruby>
+        <ruby>大<rt>dà</rt></ruby>
+        <ruby>利<rt>lì</rt></ruby>
+        <ruby>人<rt>rén</rt></ruby>
+        <span>。</span>
+      </div>
+      <div class="italian-translation">Io sono italiano.</div>
+    </li>
+
+    <!-- Esempio 2 -->
+    <li class="example-item">
+      <div class="chinese-text">
+        <ruby>你<rt>nǐ</rt></ruby>
+        <ruby>喜<rt>xǐ</rt></ruby>
+        <ruby>欢<rt>huan</rt></ruby>
+        <ruby>学<rt>xué</rt></ruby>
+        <ruby>习<rt>xí</rt></ruby>
+        <ruby>吗<rt>ma</rt></ruby>
+        <span>？</span>
+      </div>
+      <div class="italian-translation">Ti piace studiare?</div>
+    </li>
+  </ul>
 </div> `,
- box2: ` <div class="bg-amber-50 border-l-4 border-amber-400 p-6 rounded-r-2xl shadow-sm">
-    <div class="text-xs font-bold text-amber-700 uppercase mb-2 tracking-widest">Esempio</div>
-    <p class="text-4xl font-chinese mb-1">我吃米饭</p>
-    <p class="text-slate-500 italic mb-3">Wǒ chī mǐfàn</p>
-    <p class="text-slate-800 border-t border-amber-200 pt-3 text-lg font-semibold">Io mangio il riso</p>
+ box2: `<div class="chinese-example-single">
+  <div class="chinese-text">
+    <ruby>今<rt>jīn</rt></ruby>
+    <ruby>天<rt>tiān</rt></ruby>
+    <ruby>天<rt>tiān</rt></ruby>
+    <ruby>气<rt>qì</rt></ruby>
+    <ruby>很<rt>hěn</rt></ruby>
+    <ruby>好<rt>hǎo</rt></ruby>
+    <span>。</span>
+  </div>
+  <div class="italian-translation">Oggi il tempo è molto bello.</div>
 </div> `,
     focus: ` <div class="my-6 p-4 bg-white border border-slate-200 rounded-xl shadow-sm">
   <p class="mb-2">
