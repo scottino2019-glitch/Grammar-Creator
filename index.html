@@ -136,12 +136,7 @@
             text-decoration-thickness: 2px;
             text-underline-offset: 4px;
         }
-/* Altri style */
-         h1, .font-titolo, .font-header {
-        font-family:  'Cinzel Decorative', serif;
-        letter-spacing: 0.1em;
-        line-height: 1.2;
-    }
+
         /* notebook righe */
         .notebook-container {
     width: 100%;
@@ -594,6 +589,7 @@ rt {
 <div class="bg-white p-2 rounded cursor-pointer" onclick="insertSnippet('postit')">Postit</div> 
 <div class="bg-white p-2 rounded cursor-pointer" onclick="insertSnippet('grammar')">Grammatica + esempi</div>
 <div class="bg-white p-2 rounded cursor-pointer" onclick="insertSnippet('dialogue')">Dialogo</div>
+<div class="bg-white p-2 rounded cursor-pointer" onclick="insertSnippet('titolo')">Titolo</div>
                 </div>
             </section>
         </div>
@@ -861,7 +857,11 @@ Il Soggetto 🎎<br><span class="testo-blu">主题</span>
     </div>
   </div>
 
-</div> `
+</div> `,
+        titolo: ` <h1 class="font-['Crimson_Pro',_serif] text-4xl md:text-5xl text-stone-800 font-semibold leading-tight tracking-tight border-b border-stone-300 pb-4 mb-8">
+  La Sintassi della Frase
+  <span class="block text-xl md:text-2xl text-stone-500 font-normal italic mt-2 font-['Crimson_Pro',_serif]">Fondamenti e regole generali</span>
+</h1> `
 
     };
 
