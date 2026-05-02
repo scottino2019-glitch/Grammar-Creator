@@ -474,6 +474,25 @@ rt {
   border: 1px solid #bfdbfe;
   border-bottom-right-radius: 4px; /* Crea l'effetto "coda" del fumetto a destra */
 }
+/* Audio */
+.card { 
+            display: inline-flex; 
+            align-items: center; 
+            gap: 20px; 
+            padding: 20px; 
+            border: 1px solid #ccc; 
+            border-radius: 12px;
+            background: #fdfdfd;
+        }
+ .btn-audio { 
+            font-size: 32px; 
+            background: none; 
+            border: none; 
+            cursor: pointer; 
+            padding: 10px;
+            border-radius: 50%;
+        }
+
 
         /* Navigazione */
         .sidebar-item {
@@ -591,6 +610,7 @@ rt {
 <div class="bg-white p-2 rounded cursor-pointer" onclick="insertSnippet('dialogue')">Dialogo</div>
 <div class="bg-white p-2 rounded cursor-pointer" onclick="insertSnippet('titolo')">Titolo</div>
 <div class="bg-white p-2 rounded cursor-pointer" onclick="insertSnippet('grid')">grid</div>
+<div class="bg-white p-2 rounded cursor-pointer" onclick="insertSnippet('audio')">audio</div>
                 </div>
             </section>
         </div>
@@ -872,7 +892,18 @@ Il Soggetto 🎎<br><span class="testo-blu">主题</span>
         <div class="font-semibold text-gray-800">Elemento 2</div>
         <div class="text-sm text-gray-600 mt-1">Contenuto elemento</div>
     </div>
-</div>`
+</div>`,
+ audio: `  <div class="card">
+        <!-- Tag <ruby> per mostrare il pinyin sopra i caratteri cinesi -->
+        <ruby id="testo-cinese">
+            你能重复一遍吗？
+            <!-- Tag <rt> per il pinyin -- >
+            <rt>Nǐ néng chóngfù yíbiàn ma?</rt>
+        </ruby>
+
+        <button class="btn-audio" onclick="leggiTesto()">🔊</button>
+    </div>`,
+        button: ` <button class="btn-audio" onclick="leggiTesto()">🔊</button> `
 
     };
 
@@ -1061,6 +1092,24 @@ Il Soggetto 🎎<br><span class="testo-blu">主题</span>
         function changeChapter(dir) { currentIdx += dir; render(); document.querySelector('main').scrollTo(0,0); }
         function toggleSidebar() { document.getElementById('sidebar').classList.toggle('-translate-x-full'); document.getElementById('sidebar-overlay').classList.toggle('hidden'); }
         window.onload = render;
+  <!-- Script Web Speech API -->
+   
+        function leggiTesto() {
+            // Seleziona solo il testo dei caratteri cinesi dal tag ruby
+            const testo = document.getElementById('testo-cinese').childNodes[0].nodeValue.trim();
+            
+            // Crea l'oggetto audio
+            const audio = new SpeechSynthesisUtterance(testo);
+            
+            // Imposta la voce al cinese mandarino
+            audio.lang = 'zh-CN'; 
+            
+            // Opzionale: rallenta leggermente la voce (1 è il default)
+            audio.rate = 0.8; 
+            
+            // Riproduci l'audio
+            window.speechSynthesis.speak(audio);
+        }
     <\/script>
 </body>
 </html>`;
@@ -1073,6 +1122,7 @@ Il Soggetto 🎎<br><span class="testo-blu">主题</span>
     }
 
     window.onload = init;
+
 </script>
 
 </body>
