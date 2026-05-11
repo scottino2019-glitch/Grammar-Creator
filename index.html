@@ -667,6 +667,8 @@ rt {
 <div class="bg-white p-2 rounded cursor-pointer" onclick="insertSnippet('grid')">grid</div>
 <div class="bg-white p-2 rounded cursor-pointer" onclick="insertSnippet('audio')">audio</div>
 <div class="bg-white p-2 rounded cursor-pointer" onclick="insertSnippet('cornice')">cornice</div>
+<div class="bg-white p-2 rounded cursor-pointer" onclick="insertSnippet('video')">video</div>
+<div class="bg-white p-2 rounded cursor-pointer" onclick="insertSnippet('audio2')">audio2</div>
 
                 </div>
             </section>
@@ -1052,7 +1054,21 @@ cornice: `
         <!-- FINE AREA CONTENUTO                        -->
         <!-- ========================================== -->
 
-    </div>`
+    </div>`,
+        video: `<div class="vintage-container" style="margin: 30px auto; max-width: 700px;">
+  <div class="vintage-header"><h3 class="vintage-title">🎬 Videolezione</h3></div>
+  <div style="padding: 15px; background-color: #fff;">
+    <video controls style="width: 100%; border-radius: 8px;">
+      <source src="video/nomefile.mp4" type="video/mp4">
+    </video>
+  </div>
+</div>`,
+ audio2: `<div class="chinese-examples-box" style="margin: 20px auto; text-align: center;">
+  <div class="vintage-title" style="margin-bottom: 15px; font-size: 1.2rem;">🎧 Ascolta la pronuncia</div>
+  <audio controls style="width: 100%; max-width: 400px; outline: none; border-radius: 30px;">
+    <source src="audio/nomefile.mp3" type="audio/mpeg">
+  </audio>
+</div>`
     };
 
     const initialData = {
